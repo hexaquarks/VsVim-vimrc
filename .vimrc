@@ -16,7 +16,9 @@
 set relativenumber
 set ignorecase
 set smartcase
-
+set incsearch
+set autoindent        
+ 
 " ===================================
 " Leader Key Mapping
 " ===================================
@@ -27,7 +29,7 @@ let mapleader=" "
 " File Operations
 " ===================================
 " Easier save
-nnoremap <leader>w :w<CR>
+ nnoremap <leader>w :<C-s><CR>
 
 " Open .vimrc in a new tab
 nnoremap <leader>fc :tabedit C:\Users\manghelici\.vimrc<CR>
@@ -45,6 +47,11 @@ nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
 nnoremap <C-y> <C-y>3kzz
 nnoremap <C-e> <C-e>3jzz
+
+vnoremap <C-u> <C-u>zz
+vnoremap <C-d> <C-d>zz
+vnoremap <C-y> <C-y>3kzz
+vnoremap <C-e> <C-e>3jzz
 
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " Search current selection in visual mode
@@ -112,9 +119,10 @@ nnoremap <leader>h 20zh
 " VAssistX and LSP Specific Mappings
 " ===================================
 nnoremap K :vsc Edit.PeekDefinition<CR>
+nnoremap Q :vsc Edit.QuickInfo<CR>
 
 " Go to implementation (VAssistX)
-nmap gd :vsc VAssistX.GoToImplementation<CR>
+nmap gd :vsc VAssistX.GoToImplementation<CR><Esc>
 
 " (TODO) Select block comments 
 nnoremap <leader>c ?^\s*//<CR>V/^\s*[^/]<CR>k

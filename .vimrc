@@ -61,6 +61,10 @@ nnoremap <leader>m :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 " Rename symbol
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//gI<Left><Left><Left>
 
+" Occurence search centering
+nnoremap * *zz
+nnoremap # #zz
+
 " ===================================
 " Clipboard Utilities
 " ===================================
@@ -136,3 +140,29 @@ vnoremap gc :vsc Edit.ToggleComment<CR><Esc><Esc>
 
 " Add include for symbol (VAssistX)
 nnoremap <leader>i :vsc VAssistX.RefactorAddInclude<CR>
+
+" ===================================
+" Surround Vim 
+" ===================================
+" Surround simulating bindings
+nnoremap s) ciw(<C-r>")<Esc>
+nnoremap s] ciw[<C-r>"]<Esc>
+nnoremap s} ciw{<C-r>"}<Esc>
+nnoremap s> ciw<lt><C-r>"><Esc>
+nnoremap s" ciw"<C-r>""<Esc>
+nnoremap s' ciw'<C-r>"'<Esc>
+nnoremap sw) ciW(<C-r>")<Esc>
+nnoremap sw] ciW[<C-r>"]<Esc>
+nnoremap sw} ciW{<C-r>"}<Esc>
+nnoremap sw> ciW<lt><C-r>"><Esc>
+nnoremap sw" ciW"<C-r>""<Esc>
+nnoremap sw' ciW'<C-r>"'<Esc>
+
+" Surround visual selected text
+vnoremap S" c"<C-r>""<Esc>
+vnoremap S' c"<C-r>"'<Esc>
+vnoremap S) c(<C-r>")<Esc>
+vnoremap S] c[<C-r>"]<Esc>
+vnoremap S} c{<C-r>"}<Esc>
+vnoremap S> c<lt><C-r>"><Esc>
+vnoremap S* c/*<C-r>"*/<Esc>

@@ -9,7 +9,8 @@
 " External Plugins:
 " - VAssistX (Visual Assist X plugin for Visual Studio)
 " ---------------------------------------------------------------------------------
-
+inoremap <C-p> <up>
+inoremap <C-n> <down>
 " ===================================
 " General Settings
 " ===================================
@@ -60,10 +61,21 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 nnoremap <leader>m :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 " Rename symbol
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//gI<Left><Left><Left>
+" Rename symbol in all source
+nnoremap <leader>ra :vsc VAssistX.RefactorRename<CR>
 
 " Occurence search centering
 nnoremap * *zz
 nnoremap # #zz
+
+" Delete from cursor to EOL
+nnoremap <leader>de vg_"_d
+
+vnoremap p "_dP
+
+" Center on screen after next and previous during search
+nnoremap n nzz
+nnoremap N Nzz
 
 " ===================================
 " Clipboard Utilities
@@ -91,6 +103,9 @@ nnoremap x "_x
 vnoremap x "px
 vnoremap c "_c
 
+" Allows to delte a match pattern in visual mode
+xnoremap <leader>d :<C-u>'<,'>s///g<Left><Left><Left>
+
 " ===================================
 " Insert and Edit Utilities
 " ===================================
@@ -108,10 +123,10 @@ nnoremap <leader>_ ea_<ESC>
 " Window and Split Management
 " ===================================
 " Split and resize windows
-nnoremap <leader>- :vsp<CR>
+nnoremap <leader>- :vsp<CR> 
 nnoremap <leader>| :sp<CR>
 nnoremap <leader>H :vertical resize -5<CR>
-nnoremap <leader>L :vertical resize +5<CR>
+nnoremap <leader>L :vertical resize +5<CR 
 nnoremap <leader>K :resize +5<CR>
 nnoremap <leader>J :resize -5<CR>
 
@@ -120,10 +135,17 @@ nnoremap <leader>l 20zl
 nnoremap <leader>h 20zh
 
 " ===================================
+" Editor Hacks
+" ===================================
+" Show solution explorer
+nnoremap <leader>e :vsc View.SolutionExplorer<CR>
+
+" ===================================
 " VAssistX and LSP Specific Mappings
 " ===================================
 nnoremap K :vsc Edit.PeekDefinition<CR>
 nnoremap Q :vsc Edit.QuickInfo<CR>
+nnoremap <leader>sw :vsc Edit.FindAllReferences<CR>
 
 " Go to implementation (VAssistX)
 nmap gd :vsc VAssistX.GoToImplementation<CR><Esc>
@@ -135,9 +157,10 @@ nnoremap <leader>c ?^\s*//<CR>V/^\s*[^/]<CR>k
 nmap <C-O> :vsc View.NavigateBackward<CR>
 nmap <C-I> :vsc View.NavigateForward<CR>
 
-nnoremap gcc :vsc Edit.ToggleComment<CR>
-vnoremap gc :vsc Edit.ToggleComment<CR><Esc><Esc>
-
+nnoremap gcc :vsc Edit.ToggleBlockComment<CR>
+vnoremap gc :vsc Edit.ToggleBlockComment<CR><Esc><Esc>
+vnoremap <leader>* :vsc Edit.CommentSelection<CR><Esc><Esc>
+ 
 " Add include for symbol (VAssistX)
 nnoremap <leader>i :vsc VAssistX.RefactorAddInclude<CR>
 
@@ -151,12 +174,14 @@ nnoremap s} ciw{<C-r>"}<Esc>
 nnoremap s> ciw<lt><C-r>"><Esc>
 nnoremap s" ciw"<C-r>""<Esc>
 nnoremap s' ciw'<C-r>"'<Esc>
+nnoremap s* ciw/*<C-r>"*/<Esc>
 nnoremap sw) ciW(<C-r>")<Esc>
 nnoremap sw] ciW[<C-r>"]<Esc>
 nnoremap sw} ciW{<C-r>"}<Esc>
 nnoremap sw> ciW<lt><C-r>"><Esc>
 nnoremap sw" ciW"<C-r>""<Esc>
 nnoremap sw' ciW'<C-r>"'<Esc>
+nnoremap sw* ciW/*<C-r>"*/<Esc>
 
 " Surround visual selected text
 vnoremap S" c"<C-r>""<Esc>
